@@ -15,9 +15,13 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                primary: '#27272a',
-                secondary: '#18181b',
-                tertiary: '#202022',
+                pri: '#1e1e1e',
+                sec: '#292929',
+                ter: '#171717',
+                accent: '#6366F1',
+                't-pri': '#f5f5f5',
+                't-sec': '#9c9c9c',
+                't-ter': '#717171',
             }
         },
     },
