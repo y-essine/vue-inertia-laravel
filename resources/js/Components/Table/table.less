@@ -1,0 +1,24 @@
+.table {
+    @apply w-full;
+    th,
+    td {
+        @apply bg-pri text-t-pri  p-4;
+        button {
+            @apply text-t-pri p-2 uppercase text-xs rounded-md;
+        }
+    }
+
+    thead,
+    tfoot {
+        @apply border-white/5 text-t-sec;
+        th {
+            @apply text-t-sec uppercase text-xs text-start p-4;
+        }
+    }
+    thead {
+        @apply border-b-2;
+    }
+    tfoot {
+        @apply border-t-2;
+    }
+}
