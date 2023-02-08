@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ChatController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [ChatController::class, 'show'])->name('chat');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [UsersController::class, 'show'])->name('users');
 });
 
 require __DIR__.'/auth.php';
