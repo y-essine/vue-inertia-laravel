@@ -1,12 +1,17 @@
+import { groupMessages } from './helpers';
+
 export default {
     namespaced: true,
     state: {
         messages: [],
+        groups: [],
         isSending: false,
     },
     mutations: {
         SET_MESSAGES(state, messages) {
-            state.messages = messages;
+            state.messages = messages.slice(0,5);
+            const groups = groupMessages(messages);
+            state.groups = groups;
         },
         SET_SENDING(state, sending) {
             state.isSending = sending;
