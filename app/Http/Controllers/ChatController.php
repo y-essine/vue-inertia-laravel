@@ -12,13 +12,26 @@ class ChatController extends Controller
     // inertia render Chat/Chat.vue
     public function show(): Response
     {
+        $messages = Message::with('user')->latest()->take(5)->get();
         return Inertia::render('Chat/Chat', [
-            'status' => 'lahdha ntesti l faza hedhi',
+            'messages' => $messages,
         ]);
     }
 
-    public function send(Request $request): void
+    public function send(Request $request): Response
     {
-        echo $request->message;
+        $request->validate([
+            'message' => 'required',
+        ]);
+        
+        $message = Message::create([
+            'message' => $request->message,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        $messages = Message::with('user')->latest()->take(5)->get();
+        return Inertia::render('Chat/Chat', [
+            'messages' => $messages,
+        ]);
     }
 }

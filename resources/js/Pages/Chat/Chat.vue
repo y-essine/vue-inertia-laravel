@@ -1,27 +1,19 @@
 <script setup>
-import { ref } from "vue";
 import { Head } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ChatWindow from "@/Chat/ChatWindow.vue";
+// map state and actions
+import { useStore } from "vuex";
+const store = useStore();
+const setMessages = (messages) => store.dispatch("chat/setMessages", messages);
 
-defineProps({
-    status: String,
-    users: Array,
+// map state and actions
+const props = defineProps({
+    messages: Array,
 });
 
-const showEditModal = ref(false);
-
-const openEdit = (cell) => {
-    showEditModal.value = true;
-};
-
-const closeEdit = () => {
-    showEditModal.value = false;
-};
-
-const edit = (u) => {
-    console.log(u);
-};
+// set messages
+setMessages(props.messages);
 </script>
 
 <template>

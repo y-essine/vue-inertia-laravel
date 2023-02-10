@@ -15,7 +15,8 @@ const show = ref(false);
         <transition name="fade">
             <div
                 v-if="show"
-                class="absolute -top-16 py-1 px-3 bg-black/60 rounded-md"
+                class="absolute -top-10 py-1 px-3 bg-black/60 rounded-md"
+                style="transform: translateX(-33%)"
             >
                 <span class="text-sm">{{ text }}</span>
             </div>
