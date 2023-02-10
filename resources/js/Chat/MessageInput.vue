@@ -1,17 +1,29 @@
 <script setup>
 import { ref } from "vue";
-defineProps({});
+import { useForm } from "@inertiajs/vue3";
 
-const message = ref("");
+const form = useForm({
+    message: "",
+});
+
 const focus = ref(false);
-
 const emit = defineEmits(["send"]);
 
 const send = () => {
-    const msg = message.value.trim();
+    const msg = form.message.trim();
     if (msg) {
-        emit("send", msg);
-        message.value = "";
+        form.post(route("chat.send"), {
+            onSuccess: () => {
+                emit("send", msg);
+                form.reset();
+            },
+        });
+    }
+};
+
+const limit = () => {
+    if (form.message.length > 40) {
+        form.message = form.message.slice(0, 40);
     }
 };
 </script>
@@ -22,10 +34,11 @@ const send = () => {
             class="rounded bg-pri w-full focus:ring-accent border-b-[3px] outline-none py-2 px-4"
             type="text"
             placeholder="Type a message..."
-            v-model="message"
+            v-model="form.message"
             @keydown.enter="send"
             @focus="focus = true"
             @blur="focus = false"
+            @input="limit"
         />
         <button
             class="text-t-ter first-letter:rounded-md absolute right-4"
@@ -39,3 +52,4 @@ const send = () => {
         </button>
     </div>
 </template>
+>
