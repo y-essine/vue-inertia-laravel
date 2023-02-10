@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [ChatController::class, 'show'])->name('chat');
+    Route::post('/chat', [ChatController::class, 'send'])->name('chat.send');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/users', [UsersController::class, 'show'])->name('users');
