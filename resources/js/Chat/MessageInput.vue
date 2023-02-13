@@ -16,6 +16,7 @@ const focus = ref(false);
             @focus="focus = true"
             @blur="focus = false"
             @input="$emit('update:modelValue', $event.target.value)"
+            autofocus
         />
         <button
             class="text-t-ter first-letter:rounded-md absolute right-4"

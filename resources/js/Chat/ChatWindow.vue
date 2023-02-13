@@ -1,7 +1,8 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onBeforeMount, onBeforeUnmount } from "vue";
 import { usePage, useForm } from "@inertiajs/vue3";
 import { useStore } from "vuex";
+import Echo from "@/echo";
 
 import MessageGroup from "./Message/MessageGroup.vue";
 import MessageInput from "./MessageInput.vue";
@@ -35,6 +36,14 @@ const send = () => {
         },
     });
 };
+
+Echo.private("chat").listen("ChatMessageEvent", (e) => {
+    addMessage(e.message);
+});
+
+onBeforeUnmount(() => {
+    Echo.leave("chat");
+});
 </script>
 
 <template>
