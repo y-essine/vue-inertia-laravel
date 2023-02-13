@@ -6,7 +6,6 @@ import ChatWindow from "@/Chat/ChatWindow.vue";
 import { useStore } from "vuex";
 const store = useStore();
 const setMessages = (messages) => store.dispatch("chat/setMessages", messages);
-
 // map state and actions
 const props = defineProps({
     messages: Array,
